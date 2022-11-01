@@ -1,9 +1,12 @@
 import React from 'react';
 
-const Home = () => {
+const Home = ({user}) => {
 
     return(
+        <>
         <p>Home</p>
+        <p>Welcome {user.username}</p>
+        </>
     )
 }
 

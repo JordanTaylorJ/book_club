@@ -1,21 +1,21 @@
 import React, {useState} from 'react';
 
-const Login = ({setUser}) => {
-       
+
+const Signup = ({setUser}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState(['hey']);
     
     function handleSubmit(e) {
         e.preventDefault()
-        fetch("/login", {
+        fetch("/signup", {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json"
             },
             body: JSON.stringify({
-                username, 
-                password 
+                username: username, 
+                password: password 
             }), 
         })
         .then((r) => {
@@ -23,19 +23,22 @@ const Login = ({setUser}) => {
                 r.json().then((r) => setUser(r))
                 setErrors([])
             } else {
-                r.json().then((r) => setErrors(r.error))
+                r.json().then((r) => setErrors(r.errors))
             }
         })
     }
+
+    console.log(username, password, errors)
 
     return(
         <div>
             <br/>
             <form
             onSubmit={(e) => handleSubmit(e)}
+            autoComplete="off"
             >
                 <label>
-                    Username: 
+                    Create Username: 
                     <input 
                         type='text'
                         value={username} 
@@ -43,19 +46,29 @@ const Login = ({setUser}) => {
                     />
                 </label>
                 <label>
-                    Password: 
+                    Create Password: 
                 <input 
                     type="text"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 </label>
-                <input type='submit' value="submit"/>    
-                <ul> {errors}</ul>
+                <input type='submit' value="submit"/>
+                <p>{errors}</p>
             </form>
         </div>
     )
-
 }
 
-export default Login;
+export default Signup;
+
+
+/*
+{errors.length > 0 && (
+                    <ul>
+                        {errors.map((error) => (
+                            <li key={error}> {error}</li>
+                        ))}
+                    </ul>
+                )}
+                */
