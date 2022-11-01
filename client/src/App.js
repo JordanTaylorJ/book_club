@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import UserProfile from './components/UserProfile';
+import Books from './components/Books';
 
 function App() {
 
@@ -20,6 +21,8 @@ function App() {
     })
   }, []);
 
+  console.log('user', user)
+
   return (
     <Router>
       <Navbar user={user} setUser={setUser} /> 
@@ -28,6 +31,7 @@ function App() {
         <Route path='/login' element={<Login setUser={setUser}/>} />
         <Route path='/signup' element={<Signup setUser={setUser}/>} />
         <Route path='/userprofile' element={<UserProfile user={user}/>} />
+        <Route path='/books' element={<Books user={user}/>} />
       </Routes>
     </Router>
   );
