@@ -14,4 +14,19 @@ u3 = User.create(username: "Paul", password: "beatles")
 u4 = User.create(username: "Ringo", password: "beatles")
 u5 = User.create(username: "George", password: "beatles")
 
+15.times do 
+    book = Book.create(
+        title: Faker::Book.title,
+        author: Faker::Book.author
+    )
+    rand(3..10).times do 
+        review = Review.create(
+            book_id: book.id,
+            user_id: "#{rand(1..5)}",
+            comment: Faker::Lorem.sentence,
+            favorite: Faker::Boolean.boolean,
+        )
+    end
+end 
+
 puts "✅ Done seeding!"
