@@ -2,12 +2,19 @@ import React from 'react';
 
 const Home = ({user}) => {
 
-    return(
-        <>
-        <p>Home</p>
-        <p>Welcome {user.username}</p>
-        </>
-    )
+    if (!user){
+        return(
+            <>
+                <h1>Login to Join!</h1> 
+            </>
+        )
+    } else {
+        return(
+            <>
+                <h1>Welcome {user.username}!</h1>
+            </>
+        )
+    }
 }
 
 export default Home;

@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 const Signup = ({setUser}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState(['hey']);
+    const [errors, setErrors] = useState([]);
     
     function handleSubmit(e) {
         e.preventDefault()
@@ -27,8 +27,6 @@ const Signup = ({setUser}) => {
             }
         })
     }
-
-    console.log(username, password, errors)
 
     return(
         <div>
