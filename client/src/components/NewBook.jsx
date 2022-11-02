@@ -3,11 +3,12 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const NewBook = () => {
+const NewBook = ({books, setBooks}) => {
 
     const [newBook, setNewBook] = useState({
         title: "",
-        author: ""
+        author: "",
+        image: ""
     });
     const [errors, setErrors] = useState([]);
 
@@ -29,11 +30,17 @@ const NewBook = () => {
         })
         .then((r) => {
             if (r.ok) {
+                handleAddBook(newBook)
                 setErrors([])
             } else {
                 r.json().then((r) => setErrors(r))
             }
         })
+    }
+
+    const handleAddBook = () => {
+        const newBooks = [...books, newBook]
+        setBooks(newBooks)
     }
 
 
@@ -65,6 +72,15 @@ const NewBook = () => {
             type="text"
             name='author'
             value={newBook.author}
+            onChange={(e) => handleChange(e)} 
+        />
+        <TextField 
+            id="standard-basic" 
+            label="Image Address" 
+            variant="standard" 
+            type="text"
+            name='image'
+            value={newBook.image}
             onChange={(e) => handleChange(e)} 
         />
         <Button

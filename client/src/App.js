@@ -8,11 +8,13 @@ import Signup from './components/Signup';
 import UserProfile from './components/UserProfile';
 import Books from './components/Books';
 import NewBook from './components/NewBook';
+import BookReviews from './components/BookReviews';
 import {ThemeProvider, createTheme } from '@mui/material/styles';
 
 function App() {
 
   const [user, setUser] = useState('')
+  const [books, setBooks] = useState([]);
 
   const theme = createTheme({
     palette: {
@@ -24,7 +26,7 @@ function App() {
         dark: '#6da9bf', 
       },
       text:{
-        primary: "#FFFFFF"
+        primary: "#000000"
       },
     },
     components: {
@@ -44,7 +46,11 @@ function App() {
     })
   }, []);
 
-  console.log('user', user)
+  useEffect(() => {
+    fetch('/books/show')
+    .then(r => r.json())
+    .then(r => setBooks(r))
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -55,8 +61,9 @@ function App() {
         <Route path='/login' element={<Login setUser={setUser}/>} />
         <Route path='/signup' element={<Signup setUser={setUser}/>} />
         <Route path='/userprofile' element={<UserProfile user={user}/>} />
-        <Route path='/books' element={<Books/>} />
-        <Route path='/newbook' element={<NewBook user={user}/>} />
+        <Route path='/books' element={<Books books={books}/>} />
+        <Route path='/newbook' element={<NewBook books={books} setBooks={setBooks} />} />
+        <Route path='/bookreviews' element={<BookReviews books={books}/>} />
       </Routes>
     </Router>
     </ThemeProvider>

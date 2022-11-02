@@ -1,20 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 
-const Books = () => {
+const Books = ({books}) => {
 
-  const [books, setBooks] = useState([]);
-
-  useEffect(() => {
-    fetch('/books/show')
-    .then(r => r.json())
-    .then(r => setBooks(r))
-  }, []);
-
-  console.log(books)
+  const handleImageClick = () => {
+    console.log('something should be happening here eventuallyyyy')
+  }
 
   if (books.length > 0){
     return (
@@ -31,10 +25,11 @@ const Books = () => {
           {books.map((book) => (
           <ImageListItem key={book.id}>
             <img
-              src={`${book.image}`}
-              srcSet={`${book.image}`}
+              src={`${book.image}?w=248&fit=crop&auto=format`}
+              srcSet={`${book.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
               alt={book.title}
               loading="lazy"
+              onClick={handleImageClick}
             />
             <ImageListItemBar
               title={book.title}
@@ -52,5 +47,3 @@ const Books = () => {
 }
 
 export default Books; 
-//?w=248&fit=crop&auto=format
-//?w=248&fit=crop&auto=format&dpr=2 2x
