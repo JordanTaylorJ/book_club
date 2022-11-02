@@ -1,5 +1,9 @@
 class BooksController < ApplicationController
 
+    def show
+        render json: Book.all, status: :ok
+    end
+
     def create
         book = Book.create(book_params)
         if book.valid?
