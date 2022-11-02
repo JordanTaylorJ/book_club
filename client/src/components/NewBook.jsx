@@ -29,11 +29,12 @@ const NewBook = ({books, setBooks}) => {
             body: JSON.stringify(newBook)
         })
         .then((r) => {
+            console.log("response", r)
             if (r.ok) {
-                handleAddBook(newBook)
+                handleAddBook(r)
                 setErrors([])
             } else {
-                r.json().then((r) => setErrors(r))
+                r.json().then((r) => setErrors(r.errors))
             }
         })
     }
