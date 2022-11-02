@@ -1,4 +1,7 @@
 import React, {useState} from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 
 const Signup = ({setUser}) => {
@@ -29,7 +32,60 @@ const Signup = ({setUser}) => {
     }
 
     return(
-        <div>
+        <Box
+        component="form"
+        onSubmit={(e) => handleSubmit(e)}
+        sx={{
+          '& > :not(style)': { m: 1, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField 
+            id="standard-basic" 
+            label="Username" 
+            variant="standard" 
+            type='text'
+            value={username} 
+            onChange={(e) => setUsername(e.target.value)} 
+        />
+        <TextField 
+            id="standard-basic" 
+            label="Password" 
+            variant="standard" 
+            type="text"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button
+            type='submit' 
+            value="submit"
+        >
+            Create Account
+        </Button>
+        <p>{errors}</p>
+      </Box>
+    )
+}
+
+export default Signup;
+
+
+/*
+{errors.length > 0 && (
+                    <ul>
+                        {errors.map((error) => (
+                            <li key={error}> {error}</li>
+                        ))}
+                    </ul>
+                )}
+                */
+
+
+
+
+                /*
+                <div>
             <br/>
             <form
             onSubmit={(e) => handleSubmit(e)}
@@ -55,18 +111,4 @@ const Signup = ({setUser}) => {
                 <p>{errors}</p>
             </form>
         </div>
-    )
-}
-
-export default Signup;
-
-
-/*
-{errors.length > 0 && (
-                    <ul>
-                        {errors.map((error) => (
-                            <li key={error}> {error}</li>
-                        ))}
-                    </ul>
-                )}
-                */
+        */ 

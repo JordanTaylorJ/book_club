@@ -19,10 +19,10 @@ u5 = User.create(username: "George", password: "beatles")
         title: Faker::Book.title,
         author: Faker::Book.author
     )
-    rand(3..10).times do 
+    rand(3..5).times do 
         review = Review.create(
             book_id: book.id,
-            user_id: "#{rand(12..16)}",
+            user_id: "#{rand(17..21)}",
             comment: Faker::Lorem.sentence,
             favorite: Faker::Boolean.boolean,
         )

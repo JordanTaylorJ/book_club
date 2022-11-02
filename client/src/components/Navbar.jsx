@@ -43,6 +43,11 @@ const Navbar = ({user, setUser}) => {
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 component={Link} to='/books'
             >Books
+            </Button>
+            <Button
+                sx={{ my: 2, color: 'white', display: 'block' }}
+                component={Link} to='/newbook'
+            >New Book
             </Button> 
           </Box>
           { user ? (

@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import UserProfile from './components/UserProfile';
 import Books from './components/Books';
+import NewBook from './components/NewBook';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/signup' element={<Signup setUser={setUser}/>} />
         <Route path='/userprofile' element={<UserProfile user={user}/>} />
         <Route path='/books' element={<Books user={user}/>} />
+        <Route path='/newbook' element={<NewBook user={user}/>} />
       </Routes>
     </Router>
   );
