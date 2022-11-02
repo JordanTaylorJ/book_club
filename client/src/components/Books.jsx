@@ -13,14 +13,16 @@ const Books = () => {
     .then(r => setBooks(r))
   }, []);
 
+  console.log(books)
+
   if (books.length > 0){
     return (
       <ImageList sx={{ width: 900, height: 600 }}>
           {books.map((book) => (
-          <ImageListItem key={book.img}>
+          <ImageListItem key={book.id}>
             <img
-              src={`${book.img}?w=248&fit=crop&auto=format`}
-              srcSet={`${book.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              src={`${book.image}`}
+              srcSet={`${book.image}`}
               alt={book.title}
               loading="lazy"
             />
@@ -39,3 +41,5 @@ const Books = () => {
 }
 
 export default Books; 
+//?w=248&fit=crop&auto=format
+//?w=248&fit=crop&auto=format&dpr=2 2x
