@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
@@ -17,7 +18,16 @@ const Books = () => {
 
   if (books.length > 0){
     return (
-      <ImageList sx={{ width: 900, height: 600 }}>
+      <Box sx={{ 
+        position: 'absolute', 
+        left: '50%', 
+        top: '55%',
+        transform: 'translate(-50%, -50%)', 
+        width: 950, 
+        height: 650, 
+        overflowY: 'scroll' }}
+      >
+      <ImageList variant="masonry" cols={3} gap={8}>
           {books.map((book) => (
           <ImageListItem key={book.id}>
             <img
@@ -34,6 +44,7 @@ const Books = () => {
           </ImageListItem>
         ))}
       </ImageList>
+      </Box> 
     );
   } else {
     return(<h1>Loading</h1>)

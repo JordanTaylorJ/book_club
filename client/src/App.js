@@ -8,10 +8,32 @@ import Signup from './components/Signup';
 import UserProfile from './components/UserProfile';
 import Books from './components/Books';
 import NewBook from './components/NewBook';
+import {ThemeProvider, createTheme } from '@mui/material/styles';
 
 function App() {
 
   const [user, setUser] = useState('')
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#6da9bf',
+      },
+      secondary: {
+        main: '#6da9bf',
+        dark: '#6da9bf', 
+      },
+      text:{
+        primary: "#FFFFFF"
+      },
+    },
+    components: {
+      MuiButton: {
+            color: "#6da9bf",
+            fontFamily: 'Arial'
+      }
+    }
+  });
 
   useEffect(() => { 
     fetch('/auth')
@@ -25,6 +47,7 @@ function App() {
   console.log('user', user)
 
   return (
+    <ThemeProvider theme={theme}>
     <Router>
       <Navbar user={user} setUser={setUser} /> 
       <Routes>
@@ -36,6 +59,7 @@ function App() {
         <Route path='/newbook' element={<NewBook user={user}/>} />
       </Routes>
     </Router>
+    </ThemeProvider>
   );
 }
 
