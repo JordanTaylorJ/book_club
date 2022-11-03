@@ -24,8 +24,7 @@ const Books = ({books}) => {
         top: '55%',
         transform: 'translate(-50%, -50%)', 
         width: 950, 
-        height: 650, 
-        overflowY: 'scroll' }}
+        height: 650 }}
       >
       <ImageList variant="masonry" cols={3} gap={8}>
           {books.map((book) => (
