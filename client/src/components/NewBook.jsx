@@ -17,7 +17,6 @@ const NewBook = ({books, setBooks}) => {
         const name = e.target.name 
         setNewBook({...newBook, [name]:value})
     }
-    console.log(newBook)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -43,7 +42,6 @@ const NewBook = ({books, setBooks}) => {
         const newBooks = [newBook, ...books]
         setBooks(newBooks)
     }
-
 
     return(
         <>
@@ -90,8 +88,8 @@ const NewBook = ({books, setBooks}) => {
         >
             Add Book
         </Button>
+        <br/>
         <ul>{errors}</ul>
-        <p>does this work?</p>
       </Box>
       </>
     )

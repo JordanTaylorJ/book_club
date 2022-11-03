@@ -7,11 +7,13 @@ const BookReviews = ({books, setBooks, user}) => {
     let location = useLocation();
     const thisBook = books.find(book => book.id == location.state.id)
 
+    console.log("currentBook", thisBook)
+
     return(
         <>
-            <h1> Reviews</h1>
+            <h1>{thisBook.title}</h1>
             <p>list reviews here ??</p>
-            <CreateReview books={books} setBooks={setBooks} bookId={location.state.id} user={user}/>
+            <CreateReview books={books} setBooks={setBooks} thisBook={thisBook} user={user}/>
         </>
     )
 }

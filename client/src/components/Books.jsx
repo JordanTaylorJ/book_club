@@ -4,15 +4,16 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
 
 const Books = ({books}) => {
   
   let navigate = useNavigate();
   const routeChange = (e) => {
-    let path = `books`;
-    console.log('e.target', e.target)
+    let path = `/bookreviews`
     console.log('e.target.value', e.target.value)
-    //navigate(path, { state: { id: e.target.value } } );
+    console.log('e.target.id', e.target.id)
+    navigate(path, { state: { id: e.target.id } } );
   }
 
   if (books.length > 0){
@@ -36,14 +37,20 @@ const Books = ({books}) => {
               srcSet={`${book.image}`}
               alt={book.title}
               loading="lazy"
-              value={book.title}
-              onClick={(e) => routeChange(e)}
+              
             />
             <ImageListItemBar
               title={book.title}
               subtitle={<span>by: {book.author}</span>}
               position="below"
             />
+            <Button
+              id={book.id}
+              value={book.title}
+              onClick={(e) => routeChange(e)}
+            >
+              Reviews
+            </Button>
           </ImageListItem>
         ))}
       </ImageList>

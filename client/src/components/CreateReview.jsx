@@ -58,7 +58,7 @@ const CreateReview = ({books, setBooks, bookId, user}) => {
 
     return(
         <>
-            <h2>Add your review for xthis bookx. Heart to add it to your favorite collection!</h2>
+            <h2>Add your review. Heart to add it to your favorite collection!</h2>
             <Box
             component="form"
             onSubmit={(e) => handleSubmit(e)}

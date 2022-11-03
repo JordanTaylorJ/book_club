@@ -47,13 +47,14 @@ function App() {
   }, []);
 
   console.log('books from app fetch', books)
+  console.log('user', user)
 
   return (
     <ThemeProvider theme={theme}>
     <Router>
       <Navbar user={user} setUser={setUser} /> 
       <Routes>
-        <Route path='/' element={<Home user={user}/>} />
+        <Route path='/' element={<Home user={user} books={books}/>} />
         <Route path='/login' element={<Login setUser={setUser}/>} />
         <Route path='/signup' element={<Signup setUser={setUser}/>} />
         <Route path='/userprofile' element={<UserProfile user={user}/>} />

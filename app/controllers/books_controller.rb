@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 
     def show
-        render json: Book.all, status: :ok
+        render json: Book.all.order(:created_at).reverse, status: :ok
     end
 
     def create
