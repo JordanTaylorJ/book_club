@@ -7,13 +7,15 @@ import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
-const CreateReview = ({books, setBooks}) => {
+const CreateReview = ({books, setBooks, bookId, user}) => {
 
     const [reviews, setReviews] = useState('')
 
     const [review, setReview] = useState({
         comment: "",
-        favorite: false
+        favorite: false,
+        book_id: bookId,
+        user_id: user.id
     });
 
     const handleChange = (e) => {
