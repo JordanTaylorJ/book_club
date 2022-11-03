@@ -9,7 +9,6 @@ import UserProfile from './components/UserProfile';
 import Books from './components/Books';
 import NewBook from './components/NewBook';
 import BookReviews from './components/BookReviews';
-import CreateReview from './components/CreateReview';
 import {ThemeProvider, createTheme } from '@mui/material/styles';
 
 function App() {
@@ -30,12 +29,6 @@ function App() {
         primary: "#000000"
       },
     },
-    components: {
-      MuiButton: {
-            color: '#324d57',
-            fontFamily: 'Arial'
-      }
-    }
   });
 
   useEffect(() => { 
@@ -64,8 +57,7 @@ function App() {
         <Route path='/userprofile' element={<UserProfile user={user}/>} />
         <Route path='/books' element={<Books books={books}/>} />
         <Route path='/newbook' element={<NewBook books={books} setBooks={setBooks} />} />
-        <Route path='/bookreviews' element={<BookReviews books={books}/>} />
-        <Route path='/createreview' element={<CreateReview books={books}/>} />
+        <Route path='/bookreviews' element={<BookReviews books={books} setBooks={setBooks}/>} />
       </Routes>
     </Router>
     </ThemeProvider>

@@ -2,27 +2,61 @@ import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-const CreateReview = () => {
+
+const CreateReview = ({books, setBooks}) => {
+
+    const [reviews, setReviews] = useState('')
 
     const [review, setReview] = useState({
         comment: "",
         favorite: false
     });
 
-    const handleChange = () => {
-        console.log('changes happening')
+    const handleChange = (e) => {
+        const target = e.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        setReview({...review, [name]:value})
+    }
+    console.log('review', review)
+
+    const handleSubmit = (e) => {
+        console.log('something here :D')
+        e.preventDefault();
+        fetch('/reviews/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(review)
+        })
+        .then(r => r.json())
+        .then(r => handleAddReview(r))
     }
 
-    const handleSubmit = () => {
-        console.log('something here :D')
+    const handleAddReview = (review) => {
+        const updatedReviews = [...reviews, review]
+        const newBooks = books.map((book) => {
+            if (book.id === review.book_id){
+                return{
+                    ...book, review:[updatedReviews]
+                } 
+            } else {
+                return book
+            }
+        })
+        setReviews(updatedReviews);
+        setBooks(newBooks);
     }
     
 
     return(
         <>
-            <h1>form here</h1>
+            <h2>Add your review for xthis bookx. Heart to add it to your favorite collection!</h2>
             <Box
             component="form"
             onSubmit={(e) => handleSubmit(e)}
@@ -41,12 +75,12 @@ const CreateReview = () => {
                 value={review.comment}
                 onChange={(e) => handleChange(e)} 
             />
-            <FavoriteIcon
-                //id="standard-basic" 
+            <Checkbox
                 label="Favorite" 
-                //variant="standard" 
                 type="checkbox"
-                name='image'
+                name='favorite'
+                icon={<FavoriteOutlinedIcon/>} 
+                checkedIcon={<FavoriteIcon/>}
                 value={review.favorite}
                 onChange={(e) => handleChange(e)} 
             />
@@ -54,7 +88,7 @@ const CreateReview = () => {
                 type='submit' 
                 value="submit"
             >
-                Add Book
+                Add Review
             </Button>
             
         </Box>
