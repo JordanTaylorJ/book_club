@@ -3,6 +3,7 @@ class Book < ApplicationRecord
     has_many :users, through: :reviews 
 
     validates :title, presence: true, uniqueness: true 
-    validates :author, presence: true 
+    validates :author, presence: true
+    validates :image, presence: true 
 
 end

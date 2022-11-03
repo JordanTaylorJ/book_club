@@ -31,16 +31,16 @@ const NewBook = ({books, setBooks}) => {
         .then((r) => {
             console.log("response", r)
             if (r.ok) {
-                handleAddBook(r)
+                r.json().then(r => handleAddBook(r))
                 setErrors([])
             } else {
-                r.json().then((r) => setErrors(r.errors))
+                r.json().then((r) => setErrors(r.error))
             }
         })
     }
 
-    const handleAddBook = () => {
-        const newBooks = [...books, newBook]
+    const handleAddBook = (newBook) => {
+        const newBooks = [newBook, ...books]
         setBooks(newBooks)
     }
 
@@ -90,7 +90,8 @@ const NewBook = ({books, setBooks}) => {
         >
             Add Book
         </Button>
-        <p>{errors}</p>
+        <ul>{errors}</ul>
+        <p>does this work?</p>
       </Box>
       </>
     )
