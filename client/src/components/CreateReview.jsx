@@ -7,14 +7,12 @@ import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
-const CreateReview = ({books, setBooks, bookId, user}) => {
-
-    const [reviews, setReviews] = useState('')
+const CreateReview = ({thisBook, user, handleSubmitReview}) => {
 
     const [review, setReview] = useState({
         comment: "",
         favorite: false,
-        book_id: bookId,
+        book_id: thisBook.id,
         user_id: user.id
     });
 
@@ -24,44 +22,15 @@ const CreateReview = ({books, setBooks, bookId, user}) => {
         const name = target.name;
         setReview({...review, [name]:value})
     }
-    console.log('review', review)
-
-    const handleSubmit = (e) => {
-        console.log('something here :D')
-        e.preventDefault();
-        fetch('/reviews/create', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(review)
-        })
-        .then(r => r.json())
-        .then(r => handleAddReview(r))
-    }
-
-    const handleAddReview = (review) => {
-        const updatedReviews = [...reviews, review]
-        const newBooks = books.map((book) => {
-            if (book.id === review.book_id){
-                return{
-                    ...book, review:[updatedReviews]
-                } 
-            } else {
-                return book
-            }
-        })
-        setReviews(updatedReviews);
-        setBooks(newBooks);
-    }
     
+    console.log('review', review)
 
     return(
         <>
-            <h2>Add your review. Heart to add it to your favorite collection!</h2>
+            <h3>Add your review. Heart to add it to your favorite collection!</h3>
             <Box
             component="form"
-            onSubmit={(e) => handleSubmit(e)}
+            onSubmit={(e) => handleSubmitReview(e, review)}
             sx={{
             '& > :not(style)': { m: 1, width: '25ch' },
             }}

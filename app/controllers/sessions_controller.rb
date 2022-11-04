@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         end 
     end
 
-    def destory 
+    def destroy 
         session.delete :user_id
         head :no_content
     end 

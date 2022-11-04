@@ -26,7 +26,8 @@ function App() {
         dark: '#324d57', 
       },
       text:{
-        primary: "#000000"
+        primary: "#000000",
+        secondary: '#324d57'
       },
     },
   });
