@@ -55,11 +55,9 @@ const BookReviews = ({books, setBooks, user}) => {
         })
     }
 
-    console.log('reviews', reviews)
-
-    const handleDeleteReview = (deletedReview) => {
-        console.log('deleted??', deletedReview)
-        const updatedReviews = reviews.filter((review) => review.id !== deletedReview);
+    const handleDeleteReview = (deletedReviewId) => {
+        const deletedReview = reviews.find(review => review.id == deletedReviewId)
+        const updatedReviews = reviews.filter((review) => review.id !== deletedReview.id);
         const updatedBooks = books.map((book) => {
             if (book.id === deletedReview.book_id){
                 return{
