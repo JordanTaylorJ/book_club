@@ -16,7 +16,7 @@ const Home = ({user, books}) => {
                     height: 650, 
                     }}
                 >
-                <h1>Currently Reading: {books[1].title}</h1>
+                <h1>{`Currently Reading: ${books[1].title}`}</h1>
                 <img
                     src={books[1].image}
                     alt={books[1].title}
@@ -30,12 +30,14 @@ const Home = ({user, books}) => {
             <>
                 <h1>Welcome {user.username}!</h1>
                 <h1>Currently Reading:{books[1].title}</h1>
+                <img
+                    src={books[1].image}
+                    alt={books[1].title}
+                />
             </>
         )
     } else {
-        return(
-            <p>Loading</p>
-        )
+        return(<h1>Loading</h1>)
     }
 }
 

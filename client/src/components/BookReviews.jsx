@@ -17,7 +17,6 @@ const BookReviews = ({books, setBooks, user}) => {
 
     const [reviews, setReviews] = useState(thisBook.reviews)
 
-
     const handleSubmitReview = (e, review) => {
         e.preventDefault();
         fetch('/reviews', {
@@ -36,7 +35,7 @@ const BookReviews = ({books, setBooks, user}) => {
         const updatedBooks = books.map((book) => {
             if (book.id === review.book_id){
                 return{
-                    ...book, review:[updatedReviews]
+                    ...book, reviews:[updatedReviews]
                 } 
             } else {
                 return book
@@ -48,18 +47,30 @@ const BookReviews = ({books, setBooks, user}) => {
 
     const handleDelete = (e) => {
         e.preventDefault();
-        fetch('/destroy', {
+        fetch(`/reviews/${e.target.value}`, {
             method: 'DELETE'
         })
         .then(r => {
-            if (r.ok) {
-                r.json().then(r => handleDeleteReview(r))
-            }
+            if (r.ok) {handleDeleteReview(e.target.value)}
         })
     }
 
-    const handleDeleteReview = (review) => {
-        
+    console.log('reviews', reviews)
+
+    const handleDeleteReview = (deletedReview) => {
+        console.log('deleted??', deletedReview)
+        const updatedReviews = reviews.filter((review) => review.id !== deletedReview);
+        const updatedBooks = books.map((book) => {
+            if (book.id === deletedReview.book_id){
+                return{
+                    ...book, reviews:[updatedReviews]
+                } 
+            } else {
+                return book
+            }
+        })
+        setReviews(updatedReviews);
+        setBooks(updatedBooks);
     }
  
     return(
@@ -90,7 +101,7 @@ const BookReviews = ({books, setBooks, user}) => {
                         />
                         {(review.favorite === true) ? (<FavoriteIcon/>) : <></>}
                         {(review.user_id === user.id) ? 
-                        (<Button onClick={(e) => handleDelete(e)}>
+                        (<Button value={review.id} onClick={(e) => handleDelete(e)}>
                             x
                         </Button>) 
                         : <></>}

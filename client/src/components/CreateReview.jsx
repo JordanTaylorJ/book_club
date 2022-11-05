@@ -22,8 +22,6 @@ const CreateReview = ({thisBook, user, handleSubmitReview}) => {
         const name = target.name;
         setReview({...review, [name]:value})
     }
-    
-    console.log('review', review)
 
     return(
         <>
