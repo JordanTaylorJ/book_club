@@ -24,17 +24,17 @@ const CreateReview = ({thisBook, user, handleSubmitReview}) => {
     }
 
     return(
-        <>
+        <div>
             <h3>Add your review. Heart to add it to your favorite collection!</h3>
             <Box
-            component="form"
-            onSubmit={(e) => handleSubmitReview(e, review)}
-            sx={{
-            '& > :not(style)': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-        >
+                component="form"
+                onSubmit={(e) => handleSubmitReview(e, review)}
+                sx={{
+                '& > :not(style)': { m: 1, width: '25ch' },
+                }}
+                noValidate
+                autoComplete="off"
+            >
             <TextField 
                 id="standard-basic" 
                 label="Comment" 
@@ -59,9 +59,8 @@ const CreateReview = ({thisBook, user, handleSubmitReview}) => {
             >
                 Add Review
             </Button>
-            
         </Box>
-      </>
+      </div>
     )
 }
 

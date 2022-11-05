@@ -15,6 +15,7 @@ const UserProfile = ({user}) => {
                 <br/>
                 <h1>Profile</h1>
                 <ul>Username: {user.username}</ul>
+                <p>favorited books in here !</p>
                 
             </>
 
@@ -23,9 +24,3 @@ const UserProfile = ({user}) => {
 }
 
 export default UserProfile; 
-
-/*
-<Button component={Link} to='/edituser'>Change Password</Button>
-                <br/>
-                <Button component={Link} to='/deleteaccount'>Delete Account</Button>
-*/

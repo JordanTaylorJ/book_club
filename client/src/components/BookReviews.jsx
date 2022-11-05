@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import CreateReview from './CreateReview';
 import { useLocation } from "react-router-dom";
-import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -72,13 +71,14 @@ const BookReviews = ({books, setBooks, user}) => {
     }
  
     return(
-        <Box style={{
-            position: 'absolute', 
-            left: '40%', 
-            top: '58%',
-            transform: 'translate(-50%, -50%)'
-        }}>
+      <div class='center'>
             <h1>{thisBook.title}</h1>
+            <div class='box box2'>
+            <img
+                src={thisBook.image}
+                alt={thisBook.title}
+            />
+            </div>
             <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#bae0af' }}>
                 {reviews.map(review => {
                     return(
@@ -104,7 +104,7 @@ const BookReviews = ({books, setBooks, user}) => {
                         </Button>) 
                         : <></>}
                         </ListItem>
-                        <Divider component="li"/>
+                        <Divider component="ul"/>
                         </>
                     )
                 })}
@@ -117,7 +117,7 @@ const BookReviews = ({books, setBooks, user}) => {
             /> 
             : <h2>Login to join the conversation</h2>}
             <br/>
-        </Box>
+        </div>
     )
 }
 
