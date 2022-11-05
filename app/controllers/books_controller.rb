@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
 
+    skip_before_action :authorized, only: :show 
+
     def show
         render json: Book.all.order(:created_at).reverse, status: :ok
     end
