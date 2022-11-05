@@ -28,7 +28,6 @@ const NewBook = ({books, setBooks}) => {
             body: JSON.stringify(newBook)
         })
         .then((r) => {
-            console.log("response", r)
             if (r.ok) {
                 r.json().then(r => handleAddBook(r))
                 setErrors([])
@@ -44,17 +43,17 @@ const NewBook = ({books, setBooks}) => {
     }
 
     return(
-        <>
+        <div class='center'>
         <h1>Add a New Book</h1>
         <Box
-        component="form"
-        onSubmit={(e) => handleSubmit(e)}
-        sx={{
-          '& > :not(style)': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete="off"
-      >
+            component="form"
+            onSubmit={(e) => handleSubmit(e)}
+            sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+        >
         <TextField 
             id="standard-basic" 
             label="Title" 
@@ -91,7 +90,7 @@ const NewBook = ({books, setBooks}) => {
         <br/>
         <ul>{errors}</ul>
       </Box>
-      </>
+      </div>
     )
 }
 

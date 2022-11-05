@@ -32,15 +32,16 @@ const Signup = ({setUser}) => {
     }
 
     return(
+        <div class='center'>
         <Box
-        component="form"
-        onSubmit={(e) => handleSubmit(e)}
-        sx={{
-          '& > :not(style)': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete="off"
-      >
+            component="form"
+            onSubmit={(e) => handleSubmit(e)}
+            sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+        >
         <TextField 
             id="standard-basic" 
             label="Username" 
@@ -65,50 +66,8 @@ const Signup = ({setUser}) => {
         </Button>
         <p>{errors}</p>
       </Box>
+      </div>
     )
 }
 
-export default Signup;
-
-
-/*
-{errors.length > 0 && (
-                    <ul>
-                        {errors.map((error) => (
-                            <li key={error}> {error}</li>
-                        ))}
-                    </ul>
-                )}
-                */
-
-
-
-
-                /*
-                <div>
-            <br/>
-            <form
-            onSubmit={(e) => handleSubmit(e)}
-            autoComplete="off"
-            >
-                <label>
-                    Create Username: 
-                    <input 
-                        type='text'
-                        value={username} 
-                        onChange={(e) => setUsername(e.target.value)} 
-                    />
-                </label>
-                <label>
-                    Create Password: 
-                <input 
-                    type="text"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                </label>
-                <input type='submit' value="submit"/>
-                <p>{errors}</p>
-            </form>
-        </div>
-        */ 
+export default Signup; 

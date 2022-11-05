@@ -56,8 +56,7 @@ const CreateReview = ({thisBook, user, handleSubmitReview}) => {
             <Button
                 type='submit' 
                 value="submit"
-            >
-                Add Review
+            > Add Review 
             </Button>
         </Box>
       </div>

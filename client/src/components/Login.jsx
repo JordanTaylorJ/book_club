@@ -32,6 +32,7 @@ const Login = ({setUser}) => {
     }
 
     return(
+        <div class='center'>
         <Box
         component="form"
         onSubmit={(e) => handleSubmit(e)}
@@ -65,36 +66,9 @@ const Login = ({setUser}) => {
         </Button>
         <p>{errors}</p>
       </Box>
+      </div>
     )
 
 }
 
-export default Login;
-
-/*
-<div>
-            <br/>
-            <form
-            onSubmit={(e) => handleSubmit(e)}
-            >
-                <label>
-                    Username: 
-                    <input 
-                        type='text'
-                        value={username} 
-                        onChange={(e) => setUsername(e.target.value)} 
-                    />
-                </label>
-                <label>
-                    Password: 
-                <input 
-                    type="text"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                </label>
-                <input type='submit' value="submit"/>    
-                <ul> {errors}</ul>
-            </form>
-        </div>
-*/
+export default Login; 

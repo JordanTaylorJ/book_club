@@ -1,7 +1,5 @@
 import React from "react";
 import Login from './Login';
-//import Button from '@mui/material/Button';
-//import {Link} from 'react-router-dom';
 
 const UserProfile = ({user}) => {
 
@@ -11,14 +9,13 @@ const UserProfile = ({user}) => {
         )
     } else{
         return(
-            <>
+            <div class='center'>
                 <br/>
                 <h1>Profile</h1>
                 <ul>Username: {user.username}</ul>
                 <p>favorited books in here !</p>
                 
-            </>
-
+            </div>
         )
     }
 }
