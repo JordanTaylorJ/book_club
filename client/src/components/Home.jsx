@@ -16,7 +16,7 @@ const Home = ({user, books}) => {
                 }}
             >
             <h1>Login to Join!</h1>  
-            <h1>{`Currently Reading: ${books[1].title}`}</h1>
+            <h1>{`Currently Reading: ${books[0].title}`}</h1>
                 <div class="box box2" >
                     <img
                         src={books[0].image}
@@ -37,7 +37,7 @@ const Home = ({user, books}) => {
                 }}
             >
             <h1>Welcome {user.username}!</h1>
-            <h1>Currently Reading:{books[1].title}</h1>
+            <h1>Currently Reading:{books[0].title}</h1>
             <div class="box box2" >
                 <img
                     src={books[0].image}
