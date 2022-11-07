@@ -2,19 +2,24 @@ import React, {useState} from 'react';
 import CreateReview from './CreateReview';
 import { useLocation } from "react-router-dom";
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import Divider from '@mui/material/Divider';
-import Button from '@mui/material/Button';
+import EditReview from './EditReview';
+import ListReview from './ListReview';
 
 const BookReviews = ({books, setBooks, user}) => {
 
     let location = useLocation();
-    const thisBook = books.find(book => book.id == location.state.id)
+    const thisBook = books.find(book => book.id == location.state.id);
 
-    const [reviews, setReviews] = useState(thisBook.reviews)
+    const [reviews, setReviews] = useState(thisBook.reviews);
+    const [editReviewId, setEditReviewId] = useState(null);
+    const [editedReview, setEditedReview] = useState({
+        comment: "",
+        favorite: false,
+        book_id: thisBook.id,
+        user_id: user.id
+    })
+
+    
 
     const handleSubmitReview = (e, review) => {
         e.preventDefault();
@@ -70,6 +75,29 @@ const BookReviews = ({books, setBooks, user}) => {
         setBooks(updatedBooks);
     }
  
+    //prepopulate edit data
+    const handleEditReviewId = (e, review) => {
+        e.preventDefault();
+        setEditReviewId(review.id)
+        const formValues = {
+            comment: review.comment,
+            favorite: review.favorite,
+            book_id: review.book_id,
+            user_id: review.user_id
+        }
+        setEditedReview(formValues)
+    }
+    //handleChange for editing form
+    const handleEditChange = (e) => {
+        console.log('edit target', e.target.value)
+        const target = e.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        setEditedReview({...editedReview, [name]:value})
+    }
+    console.log('edited review', editedReview)
+
+
     return(
       <div class='center'>
             <h1>{thisBook.title}</h1>
@@ -83,28 +111,20 @@ const BookReviews = ({books, setBooks, user}) => {
                 {reviews.map(review => {
                     return(
                         <>
-                        <ListItem alignItems="flex-start" key={review.id}>
-                        <ListItemText
-                            primary={review.user.username}
-                            secondary={
-                                <Typography
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.secondary"
-                                >
-                                {review.comment}
-                                </Typography>
-                            }
+                        {editReviewId === review.id ? 
+                        <EditReview 
+                            review={review}
+                            editedReview={editedReview}
+                            handleEditChange={handleEditChange}
                         />
-                        {(review.favorite === true) ? (<FavoriteIcon/>) : <></>}
-                        {(review.user_id === user.id) ? 
-                        (<Button value={review.id} onClick={(e) => handleDelete(e)}>
-                            x
-                        </Button>) 
-                        : <></>}
-                        </ListItem>
-                        <Divider component="ul"/>
+                        :
+                        <ListReview
+                            review={review}
+                            user={user}
+                            handleDelete={handleDelete}
+                            handleEditReviewId={handleEditReviewId}
+                        />
+                        }
                         </>
                     )
                 })}
