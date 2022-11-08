@@ -19,16 +19,13 @@ const BookReviews = ({books, setBooks, user}) => {
         user_id: user.id
     })
 
-    
-
-    const handleSubmitReview = (e, review) => {
-        e.preventDefault();
+    const handleSubmitReview = (newReview) => {
         fetch('/reviews', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(review)
+            body: JSON.stringify(newReview)
         })
         .then(r => r.json())
         .then(r => handleAddReview(r))
@@ -47,6 +44,12 @@ const BookReviews = ({books, setBooks, user}) => {
         })
         setReviews(updatedReviews);
         setBooks(updatedBooks);
+        setEditedReview({
+            comment: "",
+            favorite: false,
+            book_id: thisBook.id,
+            user_id: user.id
+        })
     }
 
     const handleDelete = (e) => {
@@ -89,7 +92,9 @@ const BookReviews = ({books, setBooks, user}) => {
     }
     //handleChange for editing form
     const handleEditChange = (e) => {
+        e.preventDefault();
         console.log('edit target', e.target.value)
+        console.log('target name', e.target.name)
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
@@ -97,9 +102,12 @@ const BookReviews = ({books, setBooks, user}) => {
     }
     console.log('edited review', editedReview)
 
+    const handleCancelEditClick = () => {
+        setEditReviewId(null);
+    }
 
     return(
-      <div class='center'>
+      <div className='center'>
             <h1>{thisBook.title}</h1>
             <div class='box box2'>
             <img
@@ -116,6 +124,7 @@ const BookReviews = ({books, setBooks, user}) => {
                             review={review}
                             editedReview={editedReview}
                             handleEditChange={handleEditChange}
+                            handleCancelEditClick={handleCancelEditClick}
                         />
                         :
                         <ListReview

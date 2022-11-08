@@ -7,11 +7,9 @@ import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
-const EditReview = ({handleEditChange, review, handleSubmitEdit}) => {
+const EditReview = ({handleEditChange, review, handleSubmitEdit, handleCancelEditClick}) => {
 
     return(
-        <div>
-            <h3>EditReview</h3>
             <Box
                 component="form"
                 onSubmit={(e) => handleSubmitEdit(e, review)}
@@ -40,17 +38,13 @@ const EditReview = ({handleEditChange, review, handleSubmitEdit}) => {
                 onChange={(e) => handleEditChange(e)} 
             />
             <Button
-                type='submit' 
-                value="submit"
             > Save 
             </Button>
             <Button
-                type='submit' 
-                value="submit"
+                onClick={handleCancelEditClick}
             > Cancel 
             </Button>
         </Box>
-      </div>
     )
 }
 

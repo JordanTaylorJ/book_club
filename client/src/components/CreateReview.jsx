@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -6,21 +6,31 @@ import Checkbox from '@mui/material/Checkbox';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-
 const CreateReview = ({thisBook, user, handleSubmitReview}) => {
 
-    const [review, setReview] = useState({
+    const [newReview, setNewReview] = useState({
         comment: "",
         favorite: false,
         book_id: thisBook.id,
         user_id: user.id
-    });
+    })
 
-    const handleChange = (e) => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        handleSubmitReview(newReview)
+        setNewReview({
+            comment: "",
+            favorite: null,
+            book_id: thisBook.id,
+            user_id: user.id
+        })
+    }
+    
+    const handleNewReviewChange = (e) => {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        setReview({...review, [name]:value})
+        setNewReview({...newReview, [name]:value})
     }
 
     return(
@@ -28,7 +38,7 @@ const CreateReview = ({thisBook, user, handleSubmitReview}) => {
             <h3>Add your review. Heart to add it to your favorite collection!</h3>
             <Box
                 component="form"
-                onSubmit={(e) => handleSubmitReview(e, review)}
+                onSubmit={(e) => handleSubmit(e)}
                 sx={{
                 '& > :not(style)': { m: 1, width: '25ch' },
                 }}
@@ -41,8 +51,8 @@ const CreateReview = ({thisBook, user, handleSubmitReview}) => {
                 variant="standard" 
                 type='text'
                 name='comment'
-                value={review.comment}
-                onChange={(e) => handleChange(e)} 
+                value={newReview.comment}
+                onChange={(e) => handleNewReviewChange(e)} 
             />
             <Checkbox
                 label="Favorite" 
@@ -50,8 +60,8 @@ const CreateReview = ({thisBook, user, handleSubmitReview}) => {
                 name='favorite'
                 icon={<FavoriteOutlinedIcon/>} 
                 checkedIcon={<FavoriteIcon/>}
-                value={review.favorite}
-                onChange={(e) => handleChange(e)} 
+                value={newReview.favorite}
+                onChange={(e) => handleNewReviewChange(e)} 
             />
             <Button
                 type='submit' 
