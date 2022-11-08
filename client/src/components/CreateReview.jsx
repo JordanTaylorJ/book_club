@@ -20,7 +20,7 @@ const CreateReview = ({thisBook, user, handleSubmitReview}) => {
         handleSubmitReview(newReview)
         setNewReview({
             comment: "",
-            favorite: null,
+            favorite: false,
             book_id: thisBook.id,
             user_id: user.id
         })
