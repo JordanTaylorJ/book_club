@@ -12,7 +12,7 @@ const BookReviews = ({books, setBooks, user}) => {
 
     const [reviews, setReviews] = useState(thisBook.reviews);
     const [editReviewId, setEditReviewId] = useState(null);
-    const [editedReview, setEditedReview] = useState({
+    const [editReview, setEditReview] = useState({
         comment: "",
         favorite: false,
         book_id: thisBook.id,
@@ -44,7 +44,7 @@ const BookReviews = ({books, setBooks, user}) => {
         })
         setReviews(updatedReviews);
         setBooks(updatedBooks);
-        setEditedReview({
+        setEditReview({
             comment: "",
             favorite: false,
             book_id: thisBook.id,
@@ -77,6 +77,38 @@ const BookReviews = ({books, setBooks, user}) => {
         setReviews(updatedReviews);
         setBooks(updatedBooks);
     }
+
+    const handleSubmitEdit = (e) => {
+        e.preventDefault();
+        fetch(`/reviews/${editReviewId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(editReview)
+        })
+        .then(r=> r.json())
+        .then(r => handleUpdateEditReviews(r))
+    }
+
+    const handleUpdateEditReviews = (updatedReview) => {
+        const updatedReviews = reviews.map((review) => {
+            if (review.id === editReviewId) {
+                return updatedReview
+            } else return review 
+        })
+        const updatedBooks = books.map((book => {
+            if (book.id === updatedReview.book_id) {
+                return({
+                    ...book,
+                    reviews: [updatedReviews]
+                }) 
+            } else return book 
+        }))
+        setReviews(updatedReviews);
+        setBooks(updatedBooks);
+        setEditReviewId(null);
+    }
  
     //prepopulate edit data
     const handleEditReviewId = (e, review) => {
@@ -88,19 +120,15 @@ const BookReviews = ({books, setBooks, user}) => {
             book_id: review.book_id,
             user_id: review.user_id
         }
-        setEditedReview(formValues)
+        setEditReview(formValues)
     }
     //handleChange for editing form
-    const handleEditChange = (e) => {
-        e.preventDefault();
-        console.log('edit target', e.target.value)
-        console.log('target name', e.target.name)
+    const handleEditFormChange = (e) => {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        setEditedReview({...editedReview, [name]:value})
+        setEditReview({...editReview, [name]:value})
     }
-    console.log('edited review', editedReview)
 
     const handleCancelEditClick = () => {
         setEditReviewId(null);
@@ -121,10 +149,10 @@ const BookReviews = ({books, setBooks, user}) => {
                         <>
                         {editReviewId === review.id ? 
                         <EditReview 
-                            review={review}
-                            editedReview={editedReview}
-                            handleEditChange={handleEditChange}
+                            editReview={editReview}
+                            handleEditFormChange={handleEditFormChange}
                             handleCancelEditClick={handleCancelEditClick}
+                            handleSubmitEdit={handleSubmitEdit}
                         />
                         :
                         <ListReview

@@ -7,12 +7,12 @@ import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
-const EditReview = ({handleEditChange, review, handleSubmitEdit, handleCancelEditClick}) => {
+const EditReview = ({editReview, handleEditFormChange, handleCancelEditClick, handleSubmitEdit}) => {
 
     return(
             <Box
                 component="form"
-                onSubmit={(e) => handleSubmitEdit(e, review)}
+                onSubmit={(e) => handleSubmitEdit(e)}
                 sx={{
                 '& > :not(style)': { m: 1, width: '25ch' },
                 }}
@@ -25,8 +25,8 @@ const EditReview = ({handleEditChange, review, handleSubmitEdit, handleCancelEdi
                 variant="standard" 
                 type='text'
                 name='comment'
-                value={review.comment}
-                onChange={(e) => handleEditChange(e)} 
+                value={editReview.comment}
+                onChange={(e) => handleEditFormChange(e)} 
             />
             <Checkbox
                 label="Favorite" 
@@ -34,10 +34,11 @@ const EditReview = ({handleEditChange, review, handleSubmitEdit, handleCancelEdi
                 name='favorite'
                 icon={<FavoriteOutlinedIcon/>} 
                 checkedIcon={<FavoriteIcon/>}
-                value={review.favorite}
-                onChange={(e) => handleEditChange(e)} 
+                value={editReview.favorite}
+                onChange={(e) => handleEditFormChange(e)} 
             />
-            <Button
+            <Button 
+                type='submit'
             > Save 
             </Button>
             <Button

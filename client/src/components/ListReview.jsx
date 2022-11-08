@@ -30,7 +30,11 @@ const ListReview = ({review, user, handleDelete, handleEditReviewId}) => {
                 x
             </Button>) 
             : <></>}
-            <Button onClick={(e) => handleEditReviewId(e, review)}>Edit</Button>
+            {(review.user_id === user.id) ? 
+            <Button onClick={(e) => handleEditReviewId(e, review)}>
+                Edit
+            </Button>
+            :<></>}
         </ListItem>
         <Divider component="ul"/>
         </>
