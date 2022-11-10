@@ -4,11 +4,8 @@ import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import Button from '@mui/material/Button';
 
 const UserProfile = ({user}) => {
-
-    user.books.map(book => console.log(book.title))
 
     if (!user) {
         return(
@@ -17,7 +14,6 @@ const UserProfile = ({user}) => {
     } else{
         return(
             <div class='center'>
-                
                 <Box sx={{ 
                     position: 'absolute', 
                     left: '50%', 
@@ -26,8 +22,8 @@ const UserProfile = ({user}) => {
                     width: 950, 
                     height: 650 }}
                 >
-                <h1>{user.username}'s Favorite Books</h1>
-                <ImageList variant="masonry" cols={3} gap={8}> 
+                <h1>{user.username}'s Reviewed Books</h1>
+                <ImageList variant="masonry" cols={4} gap={8}> 
                 {user.books.map((book) => {
                     return(
                         <ImageListItem key={book.id}>
