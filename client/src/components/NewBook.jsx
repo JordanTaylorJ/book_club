@@ -40,6 +40,11 @@ const NewBook = ({books, setBooks}) => {
     const handleAddBook = (newBook) => {
         const newBooks = [newBook, ...books]
         setBooks(newBooks)
+        setNewBook({
+            title: "",
+            author: "",
+            image: ""
+        })
     }
 
     return(

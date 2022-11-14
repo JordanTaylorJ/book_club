@@ -50,6 +50,7 @@ function App() {
   console.log('books from app fetch', books)
   console.log('user', user)
 
+
   return (
     <ThemeProvider theme={theme}>
     <Router>
@@ -61,7 +62,7 @@ function App() {
         <Route path='/userprofile' element={<UserProfile user={user}/>} />
         <Route path='/books' element={<Books books={books}/>} />
         <Route path='/newbook' element={<NewBook books={books} setBooks={setBooks} />} />
-        <Route path='/bookreviews' element={<BookReviews books={books} setBooks={setBooks} user={user}/>} />
+        <Route path='/bookreviews' element={<BookReviews books={books} setBooks={setBooks} user={user} setUser={setUser}/>} />
       </Routes>
     </Router>
     </ThemeProvider>

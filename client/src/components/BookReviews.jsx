@@ -5,7 +5,7 @@ import List from '@mui/material/List';
 import EditReview from './EditReview';
 import ListReview from './ListReview';
 
-const BookReviews = ({books, setBooks, user}) => {
+const BookReviews = ({books, setBooks, user, setUser}) => {
 
     let location = useLocation();
     const thisBook = books.find(book => book.id == location.state.id);
@@ -19,6 +19,7 @@ const BookReviews = ({books, setBooks, user}) => {
         user_id: user.id
     })
 
+    
     const handleSubmitReview = (newReview) => {
         fetch('/reviews', {
             method: 'POST',
@@ -38,10 +39,19 @@ const BookReviews = ({books, setBooks, user}) => {
                 return{
                     ...book, reviews:[updatedReviews]
                 } 
-            } else {
-                return book
-            }
+            } else return book
         })
+        //something here is fuckeddd 
+        const updatedBook = user.books.map((book) => {
+            if (book.id === review.book_id) {
+                return {...book, reviews:[updatedReviews]}
+            } else {
+                let newBook = {...thisBook, reviews:[updatedReviews]}
+                return [...user.books, newBook]
+            }
+        }) 
+        const updatedUser = {...user, books:[updatedBook]}
+        setUser(updatedUser);
         setReviews(updatedReviews);
         setBooks(updatedBooks);
         setEditReview({
@@ -51,6 +61,8 @@ const BookReviews = ({books, setBooks, user}) => {
             user_id: user.id
         })
     }
+
+    console.log("user.books", user.books)
 
     const handleDelete = (e) => {
         e.preventDefault();
