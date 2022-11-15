@@ -5,10 +5,10 @@ import List from '@mui/material/List';
 import EditReview from './EditReview';
 import ListReview from './ListReview';
 
-const BookReviews = ({books, setBooks, user, setUser}) => {
+const BookReviews = ({books, setBooks, user}) => {
 
     let location = useLocation();
-    const thisBook = books.find(book => book.id == location.state.id);
+    const thisBook = books.find(book => book.id === parseInt(location.state.id));
 
     const [reviews, setReviews] = useState(thisBook.reviews);
     const [editReviewId, setEditReviewId] = useState(null);
@@ -18,7 +18,6 @@ const BookReviews = ({books, setBooks, user, setUser}) => {
         book_id: thisBook.id,
         user_id: user.id
     })
-
     
     const handleSubmitReview = (newReview) => {
         fetch('/reviews', {
@@ -41,17 +40,6 @@ const BookReviews = ({books, setBooks, user, setUser}) => {
                 } 
             } else return book
         })
-        //something here is fuckeddd 
-        const updatedBook = user.books.map((book) => {
-            if (book.id === review.book_id) {
-                return {...book, reviews:[updatedReviews]}
-            } else {
-                let newBook = {...thisBook, reviews:[updatedReviews]}
-                return [...user.books, newBook]
-            }
-        }) 
-        const updatedUser = {...user, books:[updatedBook]}
-        setUser(updatedUser);
         setReviews(updatedReviews);
         setBooks(updatedBooks);
         setEditReview({
@@ -61,8 +49,6 @@ const BookReviews = ({books, setBooks, user, setUser}) => {
             user_id: user.id
         })
     }
-
-    console.log("user.books", user.books)
 
     const handleDelete = (e) => {
         e.preventDefault();
@@ -75,16 +61,11 @@ const BookReviews = ({books, setBooks, user, setUser}) => {
     }
 
     const handleDeleteReview = (deletedReviewId) => {
-        const deletedReview = reviews.find(review => review.id == deletedReviewId)
-        const updatedReviews = reviews.filter((review) => review.id !== deletedReview.id);
+        const updatedReviews = reviews.filter((review) => review.id !== parseInt(deletedReviewId));
         const updatedBooks = books.map((book) => {
-            if (book.id === deletedReview.book_id){
-                return{
-                    ...book, reviews:[updatedReviews]
-                } 
-            } else {
-                return book
-            }
+            if (book.id === parseInt(deletedReviewId)){
+                return{...book, reviews:[updatedReviews]} 
+            } else return book
         })
         setReviews(updatedReviews);
         setBooks(updatedBooks);
@@ -149,7 +130,7 @@ const BookReviews = ({books, setBooks, user, setUser}) => {
     return(
       <div className='center'>
             <h1>{thisBook.title}</h1>
-            <div class='box box2'>
+            <div className='box box2'>
             <img
                 src={thisBook.image}
                 alt={thisBook.title}

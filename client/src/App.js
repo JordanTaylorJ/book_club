@@ -62,7 +62,7 @@ function App() {
         <Route path='/userprofile' element={<UserProfile user={user}/>} />
         <Route path='/books' element={<Books books={books}/>} />
         <Route path='/newbook' element={<NewBook books={books} setBooks={setBooks} />} />
-        <Route path='/bookreviews' element={<BookReviews books={books} setBooks={setBooks} user={user} setUser={setUser}/>} />
+        <Route path='/bookreviews' element={<BookReviews books={books} setBooks={setBooks} user={user}/>} />
       </Routes>
     </Router>
     </ThemeProvider>

@@ -22,7 +22,7 @@ b1 = Book.create(
 rand(3..5).times do 
     review = Review.create(
         book_id: b1.id,
-        user_id: "#{rand(43..47)}",
+        user_id: "#{rand(48..52)}",
         comment: Faker::Lorem.sentence,
         favorite: Faker::Boolean.boolean,
     )
@@ -36,7 +36,7 @@ b2 = Book.create(
 rand(3..5).times do 
     review = Review.create(
         book_id: b2.id,
-        user_id: "#{rand(43..47)}",
+        user_id: "#{rand(48..52)}",
         comment: Faker::Lorem.sentence,
         favorite: Faker::Boolean.boolean,
     )
@@ -50,7 +50,7 @@ b3 = Book.create(
 rand(3..5).times do 
     review = Review.create(
         book_id: b3.id,
-        user_id: "#{rand(43..47)}",
+        user_id: "#{rand(48..52)}",
         comment: Faker::Lorem.sentence,
         favorite: Faker::Boolean.boolean,
     )
@@ -64,7 +64,7 @@ b4 = Book.create(
 rand(3..5).times do 
     review = Review.create(
         book_id: b4.id,
-        user_id: "#{rand(43..47)}",
+        user_id: "#{rand(48..52)}",
         comment: Faker::Lorem.sentence,
         favorite: Faker::Boolean.boolean,
     )
@@ -78,7 +78,7 @@ b5 = Book.create(
 rand(3..5).times do 
     review = Review.create(
         book_id: b5.id,
-        user_id: "#{rand(43..47)}",
+        user_id: "#{rand(48..52)}",
         comment: Faker::Lorem.sentence,
         favorite: Faker::Boolean.boolean,
     )
@@ -92,7 +92,7 @@ b6 = Book.create(
 rand(3..5).times do 
     review = Review.create(
         book_id: b6.id,
-        user_id: "#{rand(43..47)}",
+        user_id: "#{rand(48..52)}",
         comment: Faker::Lorem.sentence,
         favorite: Faker::Boolean.boolean,
     )

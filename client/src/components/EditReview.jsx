@@ -11,6 +11,7 @@ const EditReview = ({editReview, handleEditFormChange, handleCancelEditClick, ha
 
     return(
             <Box
+                key={editReview.id}
                 component="form"
                 onSubmit={(e) => handleSubmitEdit(e)}
                 sx={{
