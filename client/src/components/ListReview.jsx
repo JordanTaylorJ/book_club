@@ -13,7 +13,7 @@ const ListReview = ({review, user, handleDelete, handleEditReviewId}) => {
         <>
         <ListItem alignItems="flex-start">
             <ListItemText 
-                primary={review.user.username}
+                //primary={review.user.username}
                 secondary={
                     <React.Fragment>
                     <Typography

@@ -36,7 +36,7 @@ const BookReviews = ({books, setBooks, user}) => {
         const updatedBooks = books.map((book) => {
             if (book.id === review.book_id){
                 return{
-                    ...book, reviews:[updatedReviews]
+                    ...book, reviews:updatedReviews
                 } 
             } else return book
         })
@@ -64,7 +64,7 @@ const BookReviews = ({books, setBooks, user}) => {
         const updatedReviews = reviews.filter((review) => review.id !== parseInt(deletedReviewId));
         const updatedBooks = books.map((book) => {
             if (book.id === thisBook.id){
-                return{...book, reviews:[updatedReviews]} 
+                return{...book, reviews:updatedReviews} 
             } else return book
         })
         console.log('updated reviews after delete', updatedReviews)
@@ -96,7 +96,7 @@ const BookReviews = ({books, setBooks, user}) => {
             if (book.id === updatedReview.book_id) {
                 return({
                     ...book,
-                    reviews: [updatedReviews]
+                    reviews: updatedReviews
                 }) 
             } else return book 
         }))
@@ -139,7 +139,7 @@ const BookReviews = ({books, setBooks, user}) => {
                 alt={thisBook.title}
             />
             </div>
-            {(reviews.length > 0) ?
+            {(reviews) ?
             <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#bae0af' }}>
                 {reviews.map(review => {
                     return(
