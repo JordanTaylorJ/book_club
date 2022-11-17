@@ -46,9 +46,11 @@ const CreateReview = ({thisBook, user, handleSubmitReview}) => {
                 autoComplete="off"
             >
             <TextField 
-                id="standard-basic" 
+                id="outlined-multiline-flexible"
                 label="Comment" 
                 variant="standard" 
+                multiline
+                maxRows={4}
                 type='text'
                 name='comment'
                 value={newReview.comment}

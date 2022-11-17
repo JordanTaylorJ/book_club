@@ -21,7 +21,9 @@ const EditReview = ({editReview, handleEditFormChange, handleCancelEditClick, ha
                 autoComplete="off"
             >
             <TextField 
-                id="standard-basic" 
+                id="outlined-multiline-flexible"
+                multiline
+                maxRows={4}
                 label="Comment" 
                 variant="standard" 
                 type='text'

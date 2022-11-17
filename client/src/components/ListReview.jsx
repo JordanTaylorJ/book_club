@@ -8,9 +8,10 @@ import Button from '@mui/material/Button';
 
 const ListReview = ({review, user, handleDelete, handleEditReviewId}) => {
 
+    console.log('this should be reviews?', review)
     return(
         <>
-        <ListItem alignItems="flex-start" key={review.id}>
+        <ListItem alignItems="flex-start">
             <ListItemText 
                 primary={review.user.username}
                 secondary={
@@ -21,15 +22,12 @@ const ListReview = ({review, user, handleDelete, handleEditReviewId}) => {
                     variant="body2"
                     color="text.primary"
                     >
-                    {review.user.username} : 
+                    {//review.user.username} : 
+                    }
                     </Typography>
                      {review.comment}
                     </React.Fragment>
                 }
-
-                
-            
-
             />
             {(review.favorite === true) ? (<FavoriteIcon/>) : <></>}
             {(review.user_id === user.id) ? 
