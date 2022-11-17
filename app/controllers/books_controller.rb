@@ -3,7 +3,8 @@ class BooksController < ApplicationController
     skip_before_action :authorized, only: :show 
 
     def show
-        render json: Book.all.order(:created_at).reverse, status: :ok
+        books = Book.all.order(:created_at).reverse
+        render json: books, include: 'reviews.user', status: :ok
     end
 
     def create

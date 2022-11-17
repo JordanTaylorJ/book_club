@@ -35,7 +35,7 @@ const CreateReview = ({thisBook, user, handleSubmitReview}) => {
 
     return(
         <div>
-            <h3>Add your review. Heart to add it to your favorite collection!</h3>
+            <h3>Add your review</h3>
             <Box
                 component="form"
                 onSubmit={(e) => handleSubmit(e)}

@@ -11,18 +11,25 @@ const ListReview = ({review, user, handleDelete, handleEditReviewId}) => {
     return(
         <>
         <ListItem alignItems="flex-start" key={review.id}>
-            <ListItemText
+            <ListItemText 
                 primary={review.user.username}
                 secondary={
+                    <React.Fragment>
                     <Typography
                     sx={{ display: 'inline' }}
                     component="span"
                     variant="body2"
-                    color="text.secondary"
+                    color="text.primary"
                     >
-                    {review.comment}
+                    {review.user.username} : 
                     </Typography>
+                     {review.comment}
+                    </React.Fragment>
                 }
+
+                
+            
+
             />
             {(review.favorite === true) ? (<FavoriteIcon/>) : <></>}
             {(review.user_id === user.id) ? 
@@ -42,3 +49,14 @@ const ListReview = ({review, user, handleDelete, handleEditReviewId}) => {
 }
 
 export default ListReview; 
+
+/*
+ <Typography
+                    sx={{ display: 'inline' }}
+                    component="span"
+                    variant="body2"
+                    color="text.secondary"
+                    >
+                    {review.comment}
+                    </Typography>
+                    */
