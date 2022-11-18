@@ -46,10 +46,6 @@ function App() {
     .then(r => setBooks(r))
   }, []);
 
-  console.log('books from app fetch', books)
-  console.log('user', user)
-
-
   return (
     <ThemeProvider theme={theme}>
     <Router>

@@ -67,8 +67,6 @@ const BookReviews = ({books, setBooks, user}) => {
                 return{...book, reviews:updatedReviews} 
             } else return book
         })
-        console.log('updated reviews after delete', updatedReviews)
-        console.log('updated books after delete', updatedBooks)
         setReviews(updatedReviews);
         setBooks(updatedBooks);
     }
@@ -129,7 +127,6 @@ const BookReviews = ({books, setBooks, user}) => {
         setEditReviewId(null);
     }
 
-    
     return(
       <div className='center'>
             <h1>{thisBook.title}</h1>

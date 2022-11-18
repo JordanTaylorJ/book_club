@@ -8,7 +8,6 @@ import Button from '@mui/material/Button';
 
 const ListReview = ({review, user, handleDelete, handleEditReviewId}) => {
 
-    console.log('this should be reviews?', review)
     return(
         <>
         <ListItem alignItems="flex-start">
@@ -21,9 +20,8 @@ const ListReview = ({review, user, handleDelete, handleEditReviewId}) => {
                     component="span"
                     variant="body2"
                     color="text.primary"
-                    >
+                    > {review.comment}
                     </Typography>
-                     {review.comment}
                     </React.Fragment>
                 }
             />
@@ -45,14 +43,3 @@ const ListReview = ({review, user, handleDelete, handleEditReviewId}) => {
 }
 
 export default ListReview; 
-
-/*
- <Typography
-                    sx={{ display: 'inline' }}
-                    component="span"
-                    variant="body2"
-                    color="text.secondary"
-                    >
-                    {review.comment}
-                    </Typography>
-                    */
