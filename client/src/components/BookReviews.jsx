@@ -137,7 +137,7 @@ const BookReviews = ({books, setBooks, user}) => {
             />
             </div>
             {(reviews) ?
-            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#bae0af' }}>
+            <List sx={{ width: '100%', maxWidth: 1000, bgcolor: '#cce3dd' }}>
                 {reviews.map(review => {
                     return(
                         <>
