@@ -64,8 +64,8 @@ const Login = ({setUser}) => {
         >
             Sign In
         </Button>
-        <p>{errors}</p>
       </Box>
+      <p>{errors}</p>
       </div>
     )
 
