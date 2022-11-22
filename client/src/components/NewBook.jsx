@@ -93,9 +93,11 @@ const NewBook = ({books, setBooks}) => {
             Add Book
         </Button>
         <br/>
-        <ul>{errors}</ul>
-      </Box>
-      </div>
+        </Box>
+        {errors.map((error) => 
+            <p>{error}</p>
+        )}
+        </div>
     )
 }
 

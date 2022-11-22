@@ -64,8 +64,8 @@ const Signup = ({setUser}) => {
         >
             Create Account
         </Button>
-      </Box>
-      {errors.map((error) => 
+        </Box>
+        {errors.map((error) => 
             <p>{error}</p>
         )}
       </div>
