@@ -5,17 +5,23 @@
 BookClub is an application made to share books and converse with a community about them. 
 
 ## Features
+- Homepage display with navigation panel
+- Signup with new user account
+- Login with secure password and logout
+- Create action for new books
+- Display the collection of books 
+- View book details with user comments below
+- Full CRUD actions for a user's reviews
 
 ## Image Credits
   Seeded data includes images found on [Unsplash](https://unsplash.com/).
-  - the Sun and Her Flowers: [Sincerely Media](https://unsplash.com/photos/oKbHnbz2njQ)
+  - The Sun and Her Flowers: [Sincerely Media](https://unsplash.com/photos/oKbHnbz2njQ)
   - The Two Towers: [Madalyn Cox](https://unsplash.com/photos/O7ygzpAL4Mc)
   - Never Let Me Go: [Zoe](https://unsplash.com/photos/1uMMfrKVojU)
   - Pride and Prejudice: [Loren Cutler](https://unsplash.com/photos/iOw8bQJQKvo)
   - Harry Potter: [Denise Jans](https://unsplash.com/photos/YKsAs0BTiik)
   - Thinking Fast and Slow: [Mukul Joshi](https://unsplash.com/photos/9v7j3hdAqnA)
   - Milk and Honey: [Sincerely Media](https://unsplash.com/photos/CXYPfveiuis)
-
 
 ## Tech Stack
 * Javascript React
