@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const NewBook = ({books, setBooks}) => {
+const NewBook = ({books, setBooks, user}) => {
 
     const [newBook, setNewBook] = useState({
         title: "",
@@ -49,6 +49,8 @@ const NewBook = ({books, setBooks}) => {
 
     return(
         <div class='center'>
+        {user ?
+        <>
         <h1>Add a New Book</h1>
         <Box
             component="form"
@@ -97,6 +99,8 @@ const NewBook = ({books, setBooks}) => {
         {errors.map((error) => 
             <p>{error}</p>
         )}
+        </>
+        : <h2>Login to share your books!</h2> }
         </div>
     )
 }

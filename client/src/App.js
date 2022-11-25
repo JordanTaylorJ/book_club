@@ -55,7 +55,7 @@ function App() {
         <Route path='/login' element={<Login setUser={setUser}/>} />
         <Route path='/signup' element={<Signup setUser={setUser}/>} />
         <Route path='/books' element={<Books books={books}/>} />
-        <Route path='/newbook' element={<NewBook books={books} setBooks={setBooks} />} />
+        <Route path='/newbook' element={<NewBook books={books} setBooks={setBooks} user={user} />} />
         <Route path='/bookreviews' element={<BookReviews books={books} setBooks={setBooks} user={user}/>} />
       </Routes>
     </Router>
