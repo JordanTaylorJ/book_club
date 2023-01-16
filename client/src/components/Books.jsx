@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -8,14 +8,26 @@ import Button from '@mui/material/Button';
 
 const Books = ({books}) => {
   
+  const [favoriteBook, setFavoriteBook] = useState('')
+
   let navigate = useNavigate();
   const routeChange = (e) => {
     let path = `/bookreviews`
     navigate(path, { state: { id: e.target.id } } );
   }
 
+  const handleFavoriteClick = () => {
+    fetch('/books/favorite')
+    .then(res => res.json())
+    .then(res => setFavoriteBook(res))
+  }
+  console.log('this is the normal shit', books)
+  console.log('favorite book shit', favoriteBook)
+
   if (books.length > 0){
     return (
+      <>
+      <button onClick={handleFavoriteClick} >Most Popular Book</button>
       <Box sx={{ 
         position: 'absolute', 
         left: '50%', 
@@ -49,6 +61,7 @@ const Books = ({books}) => {
         ))}
       </ImageList>
       </Box> 
+      </>
     );
   } else {
     return(<h1>Loading</h1>)
