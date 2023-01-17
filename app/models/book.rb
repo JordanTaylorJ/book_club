@@ -6,14 +6,14 @@ class Book < ApplicationRecord
     validates :author, presence: true
     validates :image, presence: true 
 
-    def favorite_book_count
-        favorite_count = 0
+    def favorite_count
+        count = 0
         self.reviews.each do |review| 
             if review.favorite == true
-                favorite_count += 1
+                count += 1
             end
         end 
-        favorite_count
+        count
     end 
 
 end

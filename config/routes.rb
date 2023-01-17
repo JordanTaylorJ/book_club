@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   
   resources :reviews, only: [:create, :update, :destroy]
-  #resources :books, only: [:show, :create]
   resources :users, only: [:show, :create]
 
   post '/signup', to: 'users#create'
@@ -11,7 +10,6 @@ Rails.application.routes.draw do
 
   get '/books/show', to: 'books#show'
   post '/books', to: 'books#create'
-
   get '/books/favorite', to: 'books#favorite'
 
 

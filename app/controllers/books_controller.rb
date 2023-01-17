@@ -17,12 +17,9 @@ class BooksController < ApplicationController
     end 
 
     def favorite
-        top = 0
-        favorite_book = ''
-        books = Book.all
-        books.each do |book|
-            if book.favorite_book_count > top 
-                top = book.favorite_book_count
+        favorite_book = Book.new(title: 'No books have been favorited.')
+        Book.all.each do |book|
+            if book.favorite_count > favorite_book.favorite_count 
                 favorite_book = book
             end
         end
