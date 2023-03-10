@@ -8,6 +8,7 @@ import Signup from './components/Signup';
 import Books from './components/Books';
 import NewBook from './components/NewBook';
 import BookReviews from './components/BookReviews';
+import NotFound from './components/NotFound';
 import {ThemeProvider, createTheme } from '@mui/material/styles';
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
         <Route path='/books' element={<Books books={books}/>} />
         <Route path='/newbook' element={<NewBook books={books} setBooks={setBooks} user={user} />} />
         <Route path='/bookreviews' element={<BookReviews books={books} setBooks={setBooks} user={user}/>} />
+        <Route path='*' element={<NotFound/>}/>
       </Routes>
     </Router>
     </ThemeProvider>

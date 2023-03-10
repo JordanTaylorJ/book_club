@@ -21,13 +21,10 @@ const Books = ({books}) => {
     .then(res => res.json())
     .then(res => setFavoriteBook(res))
   }
-  console.log('this is the normal shit', books)
-  console.log('favorite book shit', favoriteBook)
 
   if (books.length > 0){
     return (
       <>
-      <button onClick={handleFavoriteClick} >Most Popular Book</button>
       <Box sx={{ 
         position: 'absolute', 
         left: '50%', 
@@ -36,6 +33,10 @@ const Books = ({books}) => {
         width: 950, 
         height: 650 }}
       >
+      <button onClick={handleFavoriteClick} >Most Popular Book</button>
+      { favoriteBook ?
+      <p>{favoriteBook.title}</p>
+      : null}
       <ImageList variant="masonry" cols={3} gap={8}>
           {books.map((book) => (
           <ImageListItem key={book.id}>
